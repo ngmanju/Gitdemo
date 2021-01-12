@@ -1,0 +1,32 @@
+exports.handler = async (event) => {
+if (event.httpMethod === 'GET') {
+    return getItem(event);
+}
+    if (event.httpMethod == 'POST') {
+        return createCart(event)
+    }
+};
+
+const getItem = event => {
+    let item = {
+        Description: 'A Red T-Shirt',
+        color: 'RED',
+        Size: 'Large',
+        Price: '£9.99'
+    };
+    return { 
+        statuscode: 200,
+        body: JSON.stringify(item)
+};
+};
+
+const createCart = event => {
+    let body = JSON.parse(event.body);
+    console.log('this was the cart', body)
+    return {
+        statuscode: 200,
+        body: json.stringify({
+            message: 'the cart was created'
+        })
+    }
+};
